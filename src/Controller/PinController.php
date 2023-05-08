@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pin;
+use App\Repository\PinRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -59,6 +60,15 @@ class PinController extends AbstractController
        
         return $this->render('create.html.twig', ['monFormulaire' => $form->createView()]);   
     } 
+
+    /**
+     * @Route("/pin/{id<[0-9]+>}")
+     */
+    public function show(PinRepository $repo, int $id):Response{
+      $pin = $repo->find($id);
+ 
+      return $this->render('show.html.twig', compact('pin'));
+    }
 
 
 }

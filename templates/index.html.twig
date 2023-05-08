@@ -2,16 +2,20 @@
 
 
 
-
-{{ "now"|date("d/m/Y") }}
+<h4> Today is :</h4>
+    {{ "now"|date("d/m/Y") }}
 <br><br>
 
-<a href="{{ path('app_pin_create')}}" > créer un pin </a>
-{% for pin in pin %}
-<article>
-<h1>{{pin.id}}   {{ pin.title() }}</h1>
-<p>{{ pin.description() }}</p>
-</article>
+    <a href="{{ path('app_pin_create')}}" > créer un pin </a>
 
-{% endfor %}
+
+    {% for pin in pin %}
+            <article>
+            <h1>{{pin.id}}   {{ pin.title() }}</h1>
+            <p>{{ pin.description() }}</p>
+            </article>
+    {% else %}
+                <p>Sorry, you've no pins !</p>
+    {% endfor %}
+
 
