@@ -11,11 +11,12 @@
 
     {% for pin in pin %}
             <article>
-            <h1>{{pin.id}}   {{ pin.title() }}</h1>
+            <h1>{{pin.id}}   <a href="{{ path('app_pin_show', {'id': pin.id}) }}">{{ pin.title() }}</a></h1>
             <p>{{ pin.description() }}</p>
+         
             </article>
     {% else %}
-                <p>Sorry, you've no pins !</p>
+                <p style="color:red;font-size:18px;">Sorry, you've no pins !</p>
     {% endfor %}
 
 

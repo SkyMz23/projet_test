@@ -62,10 +62,14 @@ class PinController extends AbstractController
     } 
 
     /**
-     * @Route("/pin/{id<[0-9]+>}")
+     * @Route("/pin/{id<[0-9]+>}",name="app_pin_show")
      */
     public function show(PinRepository $repo, int $id):Response{
       $pin = $repo->find($id);
+
+      if(! $pin){
+        throw $this->createNotFoundException('Pin with id '. $id. ' Not found');
+      }
  
       return $this->render('show.html.twig', compact('pin'));
     }
