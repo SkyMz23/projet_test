@@ -1,22 +1,26 @@
-<h1> Ma page PIN </h1>
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+        <h1> {{ pluralize(pin|length, 'Pin', 'Pins') }}</h1>
 
 
 
-<h4> Today is :</h4>
-    {{ "now"|date("d/m/Y") }}
-<br><br>
+            <h4> Today is :</h4>
+                {{ "now"|date("d/m/Y") }}
+            <br><br>
 
-    <a href="{{ path('app_pin_create')}}" > créer un pin </a>
+                <a href="{{ path('app_pin_create')}}" > créer un pin </a>
 
 
-    {% for pin in pin %}
-            <article>
-            <h1>{{pin.id}}   <a href="{{ path('app_pin_show', {'id': pin.id}) }}">{{ pin.title() }}</a></h1>
-            <p>{{ pin.description() }}</p>
-         
-            </article>
-    {% else %}
-                <p style="color:red;font-size:18px;">Sorry, you've no pins !</p>
-    {% endfor %}
+                {% for pin in pin %}
+                        <article>
+                        <h1>{{pin.id}}   <a href="{{ path('app_pin_show', {'id': pin.id}) }}">{{ pin.title() }}</a></h1>
+                        <p>{{ pin.description() }}</p>
+                    
+                        </article>
+                {% else %}
+                            <p style="color:red;font-size:18px;">Sorry, you've no pins !</p>
+                {% endfor %}
+    {% endblock %}
 
 
